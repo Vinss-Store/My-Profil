@@ -19,6 +19,7 @@
             <a href="#home" class="active">Home</a>
             <a href="#about">About</a>
             <a href="#project">Project</a>
+            <a href="#gallery">My Galery</a>
             <a href="#contact">Contact</a>
         </nav>
 
@@ -111,22 +112,107 @@
         </div>
     </section>
 
+    <section class="gallery-section" id="gallery">
+      <h2 class="heading">Galeri Gambar</h2>
+      <div class="gallery-container">
+        <div class="gallery-item">
+          <img src="images/futsal1.jpg" alt="Gambar 1">
+          <p class="caption">Pertandingan Futsal Acara ISS.COM</p>
+        </div>
+        <div class="gallery-item">
+          <img src="images/Bukber2025.jpg" alt="Gambar 2">
+          <p class="caption">Menunggu Bukber Bersama Teman Kelas</p>
+        </div>
+        <div class="gallery-item">
+          <img src="images/ml.jpg" alt="Gambar 3">
+          <p class="caption">Pertandingan Mobile Legend ISS.COM</p>
+        </div>
+        <div class="gallery-item">
+          <img src="images/bakar1.jpg" alt="Gambar 1">
+          <p class="caption">Acara bakar-Bakar ayam setelah selesai UAS</p>
+        </div>
+        <div class="gallery-item">
+          <img src="images/makan2.jpg" alt="Gambar 2">
+          <p class="caption">Setelah bakar-Bakar Ayam Dan Makan Langsung</p>
+        </div>
+        <div class="gallery-item">
+          <img src="images/supersi.jpg" alt="Gambar 3">
+          <p class="caption">Supersi yang mendukung Pemain Sepak Bola Sistem Informasi</p>
+        </div>
+      </div>
+    </section>
+    
+    
+
     <section class="contact" id="contact">
         <h2 class="heading">Contact <span>Me!</span></h2>
-
-        <form action="#">
-            <div class="input-box">
-                <input type="text" placeholder="Full Name">
-                <input type="email" placeholder="Email Address">
-            </div>
-            <div class="input-box">
-                <input type="number" placeholder="Mobile Number">
-                <input type="text" placeholder="Email Subject">
-            </div>
-            <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
-            <input type="submit" value="Send Message" class="btn">
+      
+        <form name="submit-to-google-sheet">
+          <div class="input-box">
+            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+          </div>
+          <div class="input-box">
+            <input type="number" name="mobile" placeholder="Mobile Number" required>
+            <input type="text" name="subject" placeholder="Email Subject" required>
+          </div>
+          <textarea name="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
+          <input type="submit" value="Send Message" class="btn">
         </form>
-    </section>
+      
+        <p class="js-success-message is-hidden">Message sent successfully!</p>
+        <p class="js-error-message is-hidden">Failed to send message.</p>
+      </section>      
+
+      <div class="loading js-loading is-hidden">
+        <div class="loading-spinner">
+          <svg><circle cx="25" cy="25" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/></svg>
+        </div>
+      </div>
+  
+      <p class="js-success-message is-hidden">Success!</p>
+      <p class="js-error-message is-hidden">Error!</p>
+    </div>
+  
+    <a href="https://docs.google.com/spreadsheets/d/10aU9qrTw837gAlbgWUIAfcGlxtnDznL4y-_EUYoeGfc/edit?gid=0#gid=0" target="_blank">View the Google Sheet</a>
+    <a href="https://github.com/jamiewilson/form-to-google-sheets" target="_blank">View on GitHub</a>
+  
+    <script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbw2ZmSFQRxt4bP9MCBxTvff_MICsXqIbcDW0gpRv5t6pyzyXyBDX0KgFYxBBcCmu6IelQ/exec'
+      const form = document.forms['submit-to-google-sheet']
+      const loading = document.querySelector('.js-loading')
+      const successMessage = document.querySelector('.js-success-message')
+      const errorMessage = document.querySelector('.js-error-message')
+  
+      form.addEventListener('submit', e => {
+        e.preventDefault()
+        showLoadingIndicator()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+          .then(response => showSuccessMessage(response))
+          .catch(error => showErrorMessage(error))
+      })
+  
+      function showLoadingIndicator () {
+        form.classList.add('is-hidden')
+        loading.classList.remove('is-hidden')
+      }
+  
+      function showSuccessMessage (response) {
+        console.log('Success!', response)
+        setTimeout(() => {
+          successMessage.classList.remove('is-hidden')
+          loading.classList.add('is-hidden')
+        }, 500)
+      }
+  
+      function showErrorMessage (error) {
+        console.error('Error!', error.message)
+        setTimeout(() => {
+          errorMessage.classList.remove('is-hidden')
+          loading.classList.add('is-hidden')
+        }, 500)
+      }
+    </script>
 
 
     <script src="https://unpkg.com/scrollreveal"></script>

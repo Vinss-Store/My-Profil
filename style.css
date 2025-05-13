@@ -472,6 +472,82 @@ span {
     color: #333;
 }
 
+.gallery-section {
+  padding: 50px 20px;
+  background: var(--bg-color);
+  text-align: center;
+}
+
+.heading {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #333;
+  margin-bottom: 40px;
+}
+
+.gallery-container {
+  box-shadow: 0 .1rem 2rem var(--shadow-color);
+  transform: scale(1.02);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 kolom tetap */
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 10px;
+}
+
+
+.gallery-item {
+  color: var(--main-color);
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 220px; /* Ukuran tinggi yang konsisten */
+  object-fit: cover; /* Memastikan gambar crop rapi tanpa merusak proporsi */
+  display: block;
+  transition: transform 0.4s ease;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.caption {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 20px;
+  font-size: 2.0rem;
+  color: black;
+  font-weight: 600;
+}
+
+@media (max-width: 992px) {
+  .gallery-container {
+    grid-template-columns: repeat(2, 1fr); /* Tablet: 2 kolom */
+  }
+}
+
+@media (max-width: 600px) {
+  .gallery-container {
+    grid-template-columns: 1fr; /* HP: 1 kolom */
+  }
+}
+
+  
+
 .testimonial-container {
     display: flex;
     align-items: center;
@@ -591,6 +667,20 @@ span {
     margin-top: 2rem;
     cursor: pointer;
 }
+
+.is-hidden {
+    display: none;
+  }
+  .js-success-message,
+  .js-error-message {
+    margin-top: 10px;
+    font-weight: bold;
+    color: green;
+  }
+  .js-error-message {
+    color: red;
+  }
+  
 
 .footer {
     display: flex;
@@ -925,15 +1015,7 @@ span {
     .contact form .input-box input {
         width: 100%;
     }
-
-    .footer {
-        flex-direction: column-reverse;
-    }
-
-    .footer p {
-        text-align: center;
-        margin-top: 2rem;
-    }
+    
 }
 
 @media (max-width: 365px) {
