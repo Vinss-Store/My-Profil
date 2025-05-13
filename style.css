@@ -1032,3 +1032,51 @@ span {
 img {
     border-radius: 20px;
 }
+
+#snowfall {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: #111;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  animation: glow 3s ease-in-out infinite alternate;
+  letter-spacing: 1px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 -2px 15px rgba(255, 255, 255, 0.1);
+}
+
+/* Animasi kelap kelip */
+@keyframes glow {
+  0% {
+    color: #ff4d4d;
+    text-shadow: 0 0 5px #ff4d4d, 0 0 10px #ff4d4d;
+  }
+  25% {
+    color: #00ffff;
+    text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+  }
+  50% {
+    color: #7fff00;
+    text-shadow: 0 0 5px #7fff00, 0 0 10px #7fff00;
+  }
+  75% {
+    color: #ff00ff;
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;
+  }
+  100% {
+    color: #ffa500;
+    text-shadow: 0 0 5px #ffa500, 0 0 10px #ffa500;
+  }
+}
+
